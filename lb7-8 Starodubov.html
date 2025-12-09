@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VHLMDrive</title>
+    <link rel="stylesheet" type="text/css" href="lb7-8 Starodubov.css">
+</head>
+<body>
+    <header>
+        <h1>VHLMDrive</h1>
+        <p>We sell u drive</p>
+    </header>
+
+    <div class="container">
+        <div class="filters">
+            <div class="filter-section">
+                <h3>Country</h3>
+                <div class="filter-buttons">
+                    <input type="radio" name="type-filter" id="filter-all" checked>
+                    <label for="filter-all">All</label>
+                    
+                    <input type="radio" name="type-filter" id="filter-eu">
+                    <label for="filter-eu">Europe</label>
+                    
+                    <input type="radio" name="type-filter" id="filter-us">
+                    <label for="filter-us">USA</label>
+                    
+                    <input type="radio" name="type-filter" id="filter-as">
+                    <label for="filter-as">Asia</label>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3>HorsePower</h3>
+                <div class="hp-filter filter-buttons">
+                    <input type="radio" name="hp-filter" id="hp-all" checked>
+                    <label for="hp-all">All</label>
+
+                    <input type="radio" name="hp-filter" id="hp-low">
+                    <label for="hp-low">< 200 HP</label>
+
+                    <input type="radio" name="hp-filter" id="hp-medium">
+                    <label for="hp-medium">200-500 HP</label>
+
+                    <input type="radio" name="hp-filter" id="hp-high">
+                    <label for="hp-high">> 500 HP</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="cars-grid">
+            <div class="car-card hp-high" data-type="eu">
+                <img src="images/m5.jpg" alt="M5 f90" class="car-image">
+                    <div class="car-content">
+                    <div class="car-header">
+                        <h2 class="car-title">BMW M5 F90</h2>
+                        <div class="car-country">Europe</div>
+                    </div>
+                    <p class="car-description">Потужний спортивний седан бізнес-класу з 4.4-літровим V8, системою M xDrive та вражаючою динамікою.</p>
+                    <div class="car-meta">
+                        <span class="car-year">2019</span>
+                        <span class="car-hp">600hp</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="car-card hp-high" data-type="us">
+                <img src="images/dodge.png" alt="dodge" class="car-image">
+                    <div class="car-content">
+                    <div class="car-header">
+                        <h2 class="car-title">Dodge Challenger</h2>
+                        <div class="car-country">USA</div>
+                    </div>
+                    <p class="car-description">Американський маслкар-купе з агресивним дизайном та легендарними HEMI-двигуном.</p>
+                    <div class="car-meta">
+                        <span class="car-year">2021</span>
+                        <span class="car-hp">700hp</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="car-card hp-high" data-type="eu">
+                <img src="images/e63.png" alt="e63" class="car-image">
+                <div class="car-content">
+                    <div class="car-header">
+                        <h2 class="car-title">Mercedes E63S AMG</h2>
+                        <div class="car-country">Europe</div>
+                    </div>
+                    <p class="car-description">Один із найшвидших седанів у світі з 4.0-літровим бітурбо V8 та повним приводом 4MATIC+.</p>
+                    <div class="car-meta">
+                        <span class="car-year">2018</span>
+                        <span class="car-hp">603hp</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="car-card hp-medium" data-type="as">
+                <img src="images/r33.png" alt="r33" class="car-image">
+                <div class="car-content">
+                    <div class="car-header">
+                        <h2 class="car-title">NISSAN GTR R33</h2>
+                        <div class="car-country">Japan</div>
+                    </div>
+                    <p class="car-description">Японська ікона JDM-культури з легендарним двигуном RB26DETT і повнопривідною системою ATTESA.</p>
+                    <div class="car-meta">
+                        <span class="car-year">1995</span>
+                        <span class="car-hp">280hp</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="car-card hp-medium" data-type="eu">
+                <img src="images/m4.png" alt="m4 f82" class="car-image">
+                <div class="car-content">
+                    <div class="car-header">
+                        <h2 class="car-title">BMW M4 F82</h2>
+                        <div class="car-country">Europe</div>
+                    </div>
+                    <p class="car-description">Легке й маневрене купе з рядним 3.0-літровим турбо-моторами та фірмовою M-динамікою.</p>
+                    <div class="car-meta">
+                        <span class="car-year">2015</span>
+                        <span class="car-hp">450hp</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="car-card hp-low" data-type="as">
+                <img src="images/s13.jpg" alt="s13" class="car-image">
+                <div class="car-content">
+                    <div class="car-header">
+                        <h2 class="car-title">Nissan Silvia S13</h2>
+                        <div class="car-country">Japan</div>
+                    </div>
+                    <p class="car-description">Легенда дрифту, задньопривідне купе зі збалансованою вагою та популярним двигуном SR20DET.</p>
+                    <div class="car-meta">
+                        <span class="car-year">1989</span>
+                        <span class="car-hp">200hp</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="car-card hp-medium" data-type="as">
+                <img src="images/rx.jpg" alt="rx-7" class="car-image">
+                <div class="car-content">
+                    <div class="car-header">
+                        <h2 class="car-title">Mazda Rx-7</h2>
+                        <div class="car-country">Japan</div>
+                    </div>
+                    <p class="car-description">Культове японське спорткупе з роторним двигуном 13B-REW та фантастичною керованістю.</p>
+                    <div class="car-meta">
+                        <span class="car-year">1992</span>
+                        <span class="car-hp">280hp</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="car-card hp-low" data-type="as">
+                <img src="images/civic.jpg" alt="ek-9" class="car-image">
+                <div class="car-content">
+                    <div class="car-header">
+                        <h2 class="car-title">Honda Civic EK-9</h2>
+                        <div class="car-country">Japan</div>
+                    </div>
+                    <p class="car-description">Перший Civic Type-R, легкий атмосферний хетчбек з високими обертами та гоночною ДНК.</p>
+                    <div class="car-meta">
+                        <span class="car-year">1997</span>
+                        <span class="car-hp">185hp</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="car-card hp-high" data-type="eu">
+                <img src="images/911.jpg" alt="911" class="car-image">
+                <div class="car-content">
+                    <div class="car-header">
+                        <h2 class="car-title">Porsche 911(992)GT3R</h2>
+                        <div class="car-country">Europe</div>
+                    </div>
+                    <p class="car-description">Трекова версія 911 з атмосферним 4.0-літровим двигуном та аеродинамікою, створеною для перегонів.</p>
+                    <div class="car-meta">
+                        <span class="car-year">2023</span>
+                        <span class="car-hp">500hp</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div>
+            <p><strong>About us</strong></p>
+            <p>IS-7!!!!</p>
+        </div>
+    </footer>
+</body>
+</html>

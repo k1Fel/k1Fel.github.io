@@ -1,0 +1,371 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #000000;
+    color: #e0e0e0;
+}
+
+header {
+    background: #0a0a0a;
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+header h1 {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+header p {
+    color: #666666;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.filters {
+    background: #0a0a0a;
+    padding: 24px;
+    margin-bottom: 40px;
+    border-radius: 4px;
+    border: 1px solid #1a1a1a;
+}
+
+.filter-section {
+    margin-bottom: 24px;
+}
+
+.filter-section:last-child {
+    margin-bottom: 0;
+}
+
+.filter-section h3 {
+    font-size: 13px;
+    margin-bottom: 12px;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filter-buttons input[type="radio"] {
+    display: none;
+}
+
+.filter-buttons label {
+    padding: 8px 16px;
+    background: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+    color: #888888;
+    font-weight: 500;
+}
+
+.filter-buttons label:hover {
+    background: #151515;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.filter-buttons input[type="radio"]:checked + label {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+}
+
+.hp-filter {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.hp-filter input[type="checkbox"] {
+    display: none;
+}
+
+.hp-filter label {
+    padding: 8px 16px;
+    background: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+    color: #888888;
+    font-weight: 500;
+}
+
+.hp-filter label:hover {
+    background: #151515;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.hp-filter input[type="checkbox"]:checked + label {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+}
+
+
+.cars-grid {
+    display: grid;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.car-card {
+    background: #0a0a0a;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #1a1a1a;
+}
+
+.car-card:hover {
+    transform: translateY(-2px);
+    border-color: #ffffff;
+}
+
+.car-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: top;
+    background: #151515;
+}
+
+.car-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.car-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.car-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.car-type {
+    font-size: 11px;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 8px;
+    background: #151515;
+    border-radius: 2px;
+}
+
+.car-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #888888;
+    flex-grow: 1;
+    margin-bottom: 16px;
+}
+
+.car-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid #1a1a1a;
+    font-size: 13px;
+    color: #666666;
+}
+
+.car-year {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.car-hp {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+
+footer {
+    background: #0a0a0a;
+    color: #888888;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+    border-top: 1px solid #1a1a1a;
+}
+
+footer p {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+
+
+.container:has(#filter-all:checked) .car-card {
+    display: flex;
+}
+
+.container:has(#filter-eu:checked) .car-card:not([data-type="eu"]) {
+    display: none;
+}
+
+.container:has(#filter-us:checked) .car-card:not([data-type="us"]) {
+    display: none;
+}
+
+.container:has(#filter-as:checked) .car-card:not([data-type="as"]) {
+    display: none;
+}
+
+
+.container .car-card {
+    display: flex;
+}
+
+
+.container:has(#hp-low:checked) .car-card:not(.hp-low) {
+    display: none;
+}
+
+
+.container:has(#hp-medium:checked) .car-card:not(.hp-medium) {
+    display: none;
+}
+
+
+.container:has(#hp-high:checked) .car-card:not(.hp-high) {
+    display: none;
+}
+
+
+.container:has(#hp-all:checked) .car-card {
+    display: flex;
+}
+
+/* Mobile: 375px - 730px */
+@media (max-width: 730px) {
+    header h1 {
+        font-size: 24px;
+    }
+
+    .container {
+        padding: 24px 16px;
+    }
+
+    .cars-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filters {
+        padding: 20px;
+    }
+
+    footer {
+        padding: 32px 16px;
+    }
+}
+
+/* Tablet: 730px - 1200px */
+@media (min-width: 730px) and (max-width: 1200px) {
+    .cars-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .car-card {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .car-image {
+        width: 200px;
+        height: 100%;
+        min-height: 250px;
+    }
+
+    .car-content {
+        flex: 1;
+    }
+
+    footer {
+        display: flex;
+        justify-content: space-around;
+        align-items: start;
+        text-align: left;
+        flex-wrap: wrap;
+        gap: 32px;
+    }
+
+    footer > div {
+        flex: 1;
+        min-width: 200px;
+    }
+}
+
+/* Desktop: > 1200px */
+@media (min-width: 1200px) {
+    .cars-grid {
+        grid-template-columns: repeat(3, 1fr);
+        align-items: start;
+    }
+
+    .car-card {
+        height: 100%;
+    }
+
+    .car-image {
+        height: 220px;
+    }
+
+    .filters {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+    }
+
+    .filter-section {
+        flex: 1;
+        margin-bottom: 0;
+    }
+
+    footer {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        text-align: left;
+    }
+}
