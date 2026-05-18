@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TODO App</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0f14;
+      --surface: #151921;
+      --surface2: #1c2230;
+      --border: #252d3d;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59,130,246,0.18);
+      --green: #22c55e;
+      --red: #ef4444;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --done-text: #475569;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 48px 16px;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 640px;
+    }
+
+    /* Header */
+    .header {
+      margin-bottom: 32px;
+    }
+
+    .header h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, #e2e8f0 30%, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* Counters */
+    .counters {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .counter-card {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .counter-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+    }
+
+    .counter-card.total::before { background: var(--accent); }
+    .counter-card.unchecked::before { background: var(--red); }
+    .counter-card.done::before { background: var(--green); }
+
+    .counter-card .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .counter-card .value {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-top: 4px;
+    }
+
+    .counter-card.total .value { color: var(--accent); }
+    .counter-card.unchecked .value { color: var(--red); }
+    .counter-card.done .value { color: var(--green); }
+
+    /* Add bar */
+    .add-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .add-bar input {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .add-bar input::placeholder { color: var(--muted); }
+
+    .add-bar input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .btn-add {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 22px;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-add:hover {
+      background: #2563eb;
+      box-shadow: 0 0 16px var(--accent-glow);
+    }
+
+    .btn-add:active { transform: scale(0.97); }
+
+    /* List */
+    #todo-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .todo-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      transition: border-color 0.2s, background 0.2s;
+      animation: slideIn 0.25s ease;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .todo-item:hover { border-color: #334155; }
+    .todo-item.checked { background: #131820; }
+
+    /* Custom checkbox */
+    .todo-item input[type="checkbox"] {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      position: relative;
+    }
+
+    .todo-item input[type="checkbox"]:checked {
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .todo-item input[type="checkbox"]:checked::after {
+      content: '✓';
+      position: absolute;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .todo-item label {
+      flex: 1;
+      cursor: pointer;
+      font-size: 0.97rem;
+      transition: color 0.2s;
+    }
+
+    .todo-item.checked label {
+      color: var(--done-text);
+      text-decoration: line-through;
+    }
+
+    .btn-delete {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      padding: 5px 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .btn-delete:hover {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 48px 0;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    .empty-state .icon { font-size: 2.5rem; margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="header">
+      <h1>TODO App</h1>
+      <p>Starodubov · PD-21</p>
+    </div>
+
+    <div class="counters">
+      <div class="counter-card total">
+        <div class="label">Всього</div>
+        <div class="value" id="item-count">0</div>
+      </div>
+      <div class="counter-card unchecked">
+        <div class="label">Активних</div>
+        <div class="value" id="unchecked-count">0</div>
+      </div>
+      <div class="counter-card done">
+        <div class="label">Виконано</div>
+        <div class="value" id="done-count">0</div>
+      </div>
+    </div>
+
+    <div class="add-bar">
+      <input type="text" id="new-todo-input" placeholder="Нове завдання..." />
+      <button class="btn-add" onclick="newTodo()">+ Додати</button>
+    </div>
+
+    <ul id="todo-list"></ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
